@@ -1,0 +1,15 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &_info {
+        font-size: 1.1rem;
+    }
+
+    &_title {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+}

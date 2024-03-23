@@ -1,0 +1,51 @@
+@use "@/styles/_mixins.scss" as *;
+@use "@/styles/_colors.scss" as *;
+@use "@/styles/_variables.scss" as *;
+
+.button {
+    @include button-reset;
+
+    border-radius: $border-radius-internal;
+    color: $white-color;
+    font-size: 1rem;
+    padding: 6px 16px;
+    text-align: center;
+    transition: background-color 0.2s ease;
+
+    &[data-type="primary"] {
+        @include color-by-type(primary);
+
+        &:hover {
+            background-color: rgba($primary-dark-color, 0.9);
+        }
+
+        &:focus {
+            box-shadow: rgba($primary-dark-color, 0.4) 0 0 0 3px;
+        }
+
+        &:active {
+            background-color: rgba($primary-dark-color, 0.8);
+        }
+    }
+
+    &[data-type="secondary"] {
+        @include color-by-type(secondary);
+
+        &:hover {
+            background-color: rgba($secondary-dark-color, 0.9);
+        }
+
+        &:focus {
+            box-shadow: rgba($secondary-dark-color, 0.4) 0 0 0 3px;
+        }
+
+        &:active {
+            background-color: rgba($secondary-dark-color, 0.8);
+        }
+    }
+
+    &:focus:not(:focus-visible):not(.focus-visible) {
+        box-shadow: none;
+        outline: none;
+    }
+}

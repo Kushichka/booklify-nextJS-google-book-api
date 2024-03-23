@@ -1,0 +1,9 @@
+@use "@/styles/_variables.scss" as *;
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, $bookCard-width);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    grid-gap: 2rem;
+}

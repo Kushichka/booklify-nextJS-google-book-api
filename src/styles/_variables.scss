@@ -1,0 +1,10 @@
+$max-width: 1200px;
+$padding: 2rem;
+$border-radius-external: 12px;
+$border-radius-internal: 6px;
+$box-shadow-card: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+$bookCard-padding: 1rem;
+$bookCard-image-width: 200px;
+$bookCard-image-height: 300px;
+$bookCard-width: calc($bookCard-image-width + $bookCard-padding * 2);

@@ -1,0 +1,59 @@
+@use "@/styles/_mixins" as *;
+@use "@/styles/_colors" as *;
+@use "@/styles/_variables" as *;
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    border-radius: $border-radius-internal;
+    padding: 0.5rem 1rem;
+    border: 3px solid $primary-color;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: box-shadow 0.5s ease;
+    color: $primary-dark-color;
+
+    &.active {
+        box-shadow: 0 0 5px 5px rgba($primary-color, 0.4);
+    }
+}
+
+.input {
+    @include input-reset;
+    color: inherit;
+    width: 100%;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+}
+
+.close_btn {
+    cursor: pointer;
+    font-size: 1.8rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    &.active {
+        opacity: 1;
+        animation: animate 0.5s linear;
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

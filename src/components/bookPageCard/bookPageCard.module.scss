@@ -1,0 +1,29 @@
+@use "@/styles/_variables" as *;
+@use "@/styles/_colors" as *;
+@use "@/styles/_mixins" as *;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: $tertiary-color;
+    border-radius: $border-radius-external;
+    box-shadow: $box-shadow-card;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.body {
+    display: flex;
+    gap: 2rem;
+}
+
+.cover {
+    @include cover-decorations;
+}

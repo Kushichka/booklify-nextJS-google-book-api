@@ -1,0 +1,57 @@
+@use "@/styles/_variables" as *;
+@use "@/styles/_colors" as *;
+@use "@/styles/mixins" as *;
+
+.bookCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    width: $bookCard-width;
+    border-radius: $border-radius-external;
+    background-color: $tertiary-color;
+    box-shadow: $box-shadow-card;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.015);
+    }
+}
+
+.image {
+    @include cover-decorations;
+}
+
+.book {
+    &_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.2rem;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &_info_bottom {
+        display: flex;
+        width: 100%;
+        gap: 0.5rem;
+        justify-content: space-between;
+    }
+
+    &_title,
+    &_author {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &_title {
+        width: 100%;
+    }
+}

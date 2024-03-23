@@ -1,0 +1,15 @@
+@use "./_colors" as *;
+@use "./_variables" as *;
+@use "./reset" as *;
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: $white-color;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: calc($max-width + 2 * $padding);
+    margin: 0 auto;
+    padding: 0 $padding;
+}

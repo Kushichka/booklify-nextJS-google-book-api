@@ -1,0 +1,36 @@
+@use "@/styles/_colors.scss" as *;
+@use "@/styles/_variables.scss" as *;
+
+@mixin button-reset {
+    appearance: none;
+    border: none;
+    user-select: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+@mixin input-reset {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+@mixin color-by-type($type) {
+    @if $type == primary {
+        background-color: $primary-dark-color;
+        box-shadow: $primary-dark-color 0 1px 0;
+    } @else if $type == secondary {
+        background-color: $secondary-dark-color;
+        box-shadow: $secondary-dark-color 0 1px 0;
+    } @else {
+        background-color: #fff;
+    }
+}
+
+@mixin cover-decorations {
+    img {
+        border-radius: $border-radius-internal;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    }
+}
