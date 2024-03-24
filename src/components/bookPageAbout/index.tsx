@@ -1,19 +1,17 @@
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
+
 import { Book } from "@/types/bookData";
 
 import styles from "./bookPageAbout.module.scss";
 
 export const BookPageAbout = ({ data }: { data: Book }) => {
-    const {
-        title,
-        authors,
-        // categories,
-        description,
-        imageLinks,
-        language,
-        // pageCount,
-        publishedDate,
-        publisher,
-    } = data.volumeInfo;
+    const { authors, description, language, publishedDate, publisher } = data.volumeInfo;
+
+    const window = new JSDOM("").window;
+    const purify = DOMPurify(window);
+
+    const clearDescription = purify.sanitize(description || "");
 
     return (
         <div className={styles.about}>
@@ -29,9 +27,13 @@ export const BookPageAbout = ({ data }: { data: Book }) => {
                 <span className={styles.about_title}>Publish date:</span>
                 {publishedDate}
             </p>
+            <p className={styles.about_info}>
+                <span className={styles.about_title}>Language:</span>
+                {language}
+            </p>
             <p
                 className={styles.about_info}
-                dangerouslySetInnerHTML={{ __html: description || "" }}
+                dangerouslySetInnerHTML={{ __html: clearDescription || "" }}
             />
         </div>
     );

@@ -34,3 +34,20 @@
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
     }
 }
+
+@mixin skeletonAnimation {
+    background: linear-gradient(
+        100deg,
+        $skeleton-bg-color 8%,
+        $skeleton-bg-color-light 18%,
+        $skeleton-bg-color 33%
+    );
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+
+    @keyframes shine {
+        to {
+            background-position-x: -200%;
+        }
+    }
+}

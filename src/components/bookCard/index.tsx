@@ -1,22 +1,12 @@
 import Link from "next/link";
 
-import { BookCover } from "../../ui/bookCover";
+import { BookCover } from "../ui/bookCover";
 import { Book } from "@/types/bookData";
 
 import styles from "./bookCard.module.scss";
 
 export const BookCard = ({ book }: { book: Book }) => {
-    const {
-        title,
-        authors,
-        // categories,
-        // description,
-        imageLinks,
-        language,
-        // pageCount,
-        // publishedDate,
-        // publisher,
-    } = book.volumeInfo;
+    const { title, authors, imageLinks, language } = book.volumeInfo;
 
     return (
         <Link

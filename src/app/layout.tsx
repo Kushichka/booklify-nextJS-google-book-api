@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
 import { Header } from "@/components/header";
-import Loading from "./loading";
 
 import "@/styles/global.scss";
 
@@ -24,7 +23,7 @@ export default function RootLayout({
             <body className={roboto.className}>
                 <Header />
                 <main className="container">
-                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                    <Suspense fallback={<div>..Loading</div>}>{children}</Suspense>
                 </main>
             </body>
         </html>

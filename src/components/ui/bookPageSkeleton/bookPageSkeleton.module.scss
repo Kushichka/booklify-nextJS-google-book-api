@@ -1,0 +1,65 @@
+@use "@/styles/_variables" as *;
+@use "@/styles/_colors" as *;
+@use "@/styles/_mixins" as *;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: $max-width;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: $skeleton-bg-color;
+    border-radius: $border-radius-external;
+    box-shadow: $box-shadow-card;
+    @include skeletonAnimation;
+}
+
+.header_title,
+.cover,
+.info,
+.description {
+    border-radius: $border-radius-internal;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    &_title {
+        width: 40%;
+        height: 2rem;
+        background-color: $skeleton-bg-color-dark;
+    }
+}
+
+.body {
+    display: flex;
+    gap: 2rem;
+}
+
+.cover {
+    height: 450px;
+    width: 300px;
+    background-color: $skeleton-bg-color-dark;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: calc(100% - 300px - 2rem);
+}
+
+.info {
+    height: 2rem;
+    width: 40%;
+    background-color: $skeleton-bg-color-dark;
+}
+
+.description {
+    height: 60%;
+    width: 100%;
+    background-color: $skeleton-bg-color-dark;
+}
