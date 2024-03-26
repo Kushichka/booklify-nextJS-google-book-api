@@ -1,22 +1,28 @@
 "use client";
 import styles from "./button.module.scss";
+import { useBackNavigation } from "@/hooks/useBackNavigation";
+import { BackNavigationRoute } from "@/types/backNavigationRole";
 
-type ButtonType = "primary" | "secondary";
-
-export const Button = ({
-    type,
-    children,
-    onClick,
-}: {
-    type: ButtonType;
+type ButtonProps = {
+    type: "primary" | "secondary";
     children: string;
-    onClick?: () => void;
-}) => {
+    route?: BackNavigationRoute;
+    replace?: boolean;
+};
+
+export const Button = ({ type, children, route, replace }: ButtonProps) => {
+    const { backNavigate } = useBackNavigation();
+
+    const clickHandler = () => {
+        if (!route) return;
+        backNavigate(route, replace);
+    };
+
     return (
         <button
             className={styles.button}
             data-type={type}
-            onClick={onClick}
+            onClick={clickHandler}
         >
             {children}
         </button>

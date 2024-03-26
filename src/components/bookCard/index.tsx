@@ -10,7 +10,11 @@ export const BookCard = ({ book }: { book: Book }) => {
 
     return (
         <Link
-            href={`/book?${new URLSearchParams({ id: book.id }).toString()}`}
+            href={{
+                pathname: "/book",
+                query: { id: book.id },
+            }}
+            // href={`/book?${new URLSearchParams({ id: book.id }).toString()}`}
             key={book.id}
             className={styles.bookCard}
         >

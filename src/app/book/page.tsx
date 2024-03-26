@@ -4,6 +4,7 @@ import { BookPageAbout } from "@/components/bookPageAbout";
 import { NoResultsFound } from "@/components/noResultsFound";
 
 import styles from "./bookPage.module.scss";
+import { BackNavigation } from "@/components/ui/backNavigation";
 
 export default async function BookPage({
     searchParams,
@@ -18,6 +19,11 @@ export default async function BookPage({
 
     return (
         <section className={styles.wrapper}>
+            <BackNavigation
+                name="< Back"
+                href="back"
+            />
+
             {book && (
                 <div className={styles.card}>
                     <div className={styles.header}>
