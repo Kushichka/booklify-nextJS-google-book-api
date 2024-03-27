@@ -1,6 +1,7 @@
 "use server";
 
 import { Book } from "@/types/bookData";
+
 const baseUrl = process.env.NEXT_PUBLIC_BOOKS_BASE_URL;
 const apiKey = process.env.NEXT_PUBLIC_BOOKS_API_KEY;
 

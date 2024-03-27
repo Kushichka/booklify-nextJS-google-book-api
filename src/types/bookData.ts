@@ -1,3 +1,5 @@
+export type BookPageCategoriesProps = string;
+
 export type Book = {
     id: string;
     volumeInfo: {
@@ -7,7 +9,7 @@ export type Book = {
         publishedDate?: string;
         description?: string;
         pageCount?: number;
-        categories?: string[];
+        categories?: BookPageCategoriesProps[];
         averageRating?: number;
         ratingsCount?: number;
         imageLinks?: {

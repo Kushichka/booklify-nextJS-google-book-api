@@ -20,7 +20,7 @@ export default async function SearchPage({
     return (
         <section className={styles.wrapper}>
             <BackNavigation
-                name="< Home"
+                name="Home"
                 href="/"
             />
             <div className={styles.searchList}>

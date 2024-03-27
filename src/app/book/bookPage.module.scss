@@ -4,7 +4,7 @@
 
 .wrapper {
     max-width: 100%;
-    margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .card {
@@ -16,6 +16,7 @@
     border-radius: $border-radius-external;
     box-shadow: $box-shadow-card;
     overflow: hidden;
+    cursor: default;
 }
 
 .header {
