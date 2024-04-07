@@ -20,5 +20,6 @@ export type Book = {
 };
 
 export type BookData = {
+    totalItems: number;
     items: Book[];
 };

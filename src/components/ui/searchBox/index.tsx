@@ -24,14 +24,15 @@ export const SearchBox = ({ width }: { width?: string }) => {
     };
 
     const handlePressKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams.toString());
         if (event.key === "Enter") {
             if (searchValue) {
                 params.set("q", searchValue);
-                router.push(`search?${params.toString()}`);
+                params.set("page", "1");
             } else {
                 params.delete("q");
             }
+            router.push(`search?${params}`);
         }
     };
 

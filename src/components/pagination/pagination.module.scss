@@ -1,0 +1,39 @@
+@use "@/styles/_colors" as *;
+@use "@/styles/_variables" as *;
+@use "@/styles/_mixins" as *;
+
+.pagination {
+    &_wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.2rem;
+    }
+    &_pages {
+        display: flex;
+        gap: 1.2rem;
+        justify-content: space-between;
+    }
+
+    &_item {
+        @include button-reset;
+        font-size: 1rem;
+        background-color: $tertiary-color;
+        width: 2rem;
+        height: 2rem;
+        border-radius: $border-radius-internal;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: $secondary-color;
+        }
+
+        &_active {
+            background-color: $secondary-color;
+        }
+
+        &:focus {
+            outline: auto 5px;
+        }
+    }
+}
