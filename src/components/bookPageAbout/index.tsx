@@ -3,9 +3,9 @@ import { JSDOM } from "jsdom";
 
 import { Book } from "@/types/bookData";
 import { BookPageCategories } from "../bookPageCategories";
+import { Divider } from "../ui/divider";
 
 import styles from "./bookPageAbout.module.scss";
-import { Divider } from "../ui/divider";
 
 export const BookPageAbout = ({ data }: { data: Book }) => {
     const { authors, description, language, pageCount, categories, publishedDate, publisher } =
@@ -20,7 +20,7 @@ export const BookPageAbout = ({ data }: { data: Book }) => {
         <div className={styles.about}>
             <p className={styles.about_info}>
                 <span className={styles.about_title}>Author:</span>
-                {authors && authors[0]}
+                {authors && authors.join(", ")}
             </p>
             <p className={styles.about_info}>
                 <span className={styles.about_title}>Publisher:</span>

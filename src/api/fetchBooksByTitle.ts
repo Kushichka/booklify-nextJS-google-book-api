@@ -26,7 +26,7 @@ export const fetchBooksByTitle = async (title: string, page = "1") => {
         const startIndex = parseInt(page) === 1 ? 0 : (parseInt(page) - 1) * 12;
 
         const newTitle = title.replace(" ", "+");
-        const url = `${baseUrl}?q=intitle:${newTitle}&${queries}&startIndex=${startIndex}&fields=totalItems,items(${fields})&key=${apiKey}`;
+        const url = `${baseUrl}?q=intitle:"${newTitle}"&${queries}&startIndex=${startIndex}&fields=totalItems,items(${fields})&key=${apiKey}`;
         const response = await fetch(url);
 
         if (!response.ok) throw new Error("Failed to fetch books");

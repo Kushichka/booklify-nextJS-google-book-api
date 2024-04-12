@@ -1,0 +1,44 @@
+@use "@/styles/_variables" as *;
+@use "@/styles/_colors" as *;
+
+.popOver {
+    &_wrapper {
+        position: relative;
+    }
+
+    &_title {
+        position: absolute;
+        bottom: 65px;
+        left: calc(1rem - 3px);
+        width: calc(100% - 2rem + 6px);
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius-internal;
+        background-color: $primary-dark-color;
+        color: $white-color;
+        white-space: normal;
+        text-align: center;
+        animation: popOver 1s ease-in-out;
+    }
+
+    &_children {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    &_hide {
+        display: none;
+    }
+}
+
+@keyframes popOver {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
