@@ -15,3 +15,20 @@
     grid-gap: 2rem;
     margin-bottom: 2rem;
 }
+
+@media (max-width: 1270px) {
+    .searchList {
+        grid-template-columns: repeat(3, $bookCard-width);
+    }
+}
+
+@media (max-width: 900px) {
+    .searchList {
+        grid-template-columns: repeat(2, $bookCard-width);
+    }
+}
+@media (max-width: 600px) {
+    .searchList {
+        grid-template-columns: repeat(1, $bookCard-width);
+    }
+}

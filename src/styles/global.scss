@@ -13,3 +13,11 @@ body {
     margin: 0 auto;
     padding: 0 $padding;
 }
+
+@media (max-width: 1270px) {
+    .container {
+        max-width: calc($max-width - 2 * $padding);
+        margin: 0 auto;
+        padding: 0 $padding;
+    }
+}

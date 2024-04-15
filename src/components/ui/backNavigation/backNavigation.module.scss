@@ -17,3 +17,21 @@
         color: $primary-color;
     }
 }
+
+@media (max-width: 1270px) {
+    .wrapper {
+        width: calc($bookCard-width * 3 + 2rem * 2);
+    }
+}
+
+@media (max-width: 900px) {
+    .wrapper {
+        width: calc($bookCard-width * 2 + 1rem * 2);
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        width: calc($bookCard-width);
+    }
+}

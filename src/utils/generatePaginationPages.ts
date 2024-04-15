@@ -1,28 +1,32 @@
-export const generatePaginationPages = (totalPages: number, currentPage: number) => {
+export const generatePaginationPages = (totalPages: number, currentPage: number, offset = 2) => {
     const pages: (number | string)[] = [];
-    // calculate pagination befor the current page (including the current page)
-    // If there are less than 5 pages, show all pages
-    if (currentPage <= 5) {
+    const offsetRange = offset + 1 + 1; // offset + 1 (...) + 1 (first/last page)
+
+    // calculate pagination befor the "currentPage" (including the "currentPage")
+
+    // If "currentPage" less or equals than "offsetRange" + 1, show all pages before the "currentPage" (including the "currentPage")
+    if (currentPage <= offsetRange + 1) {
         for (let i = 1; i <= currentPage; i++) {
             pages.push(i);
         }
     } else {
-        // If there are more than 5 pages, show "..." and two pages before the current page
-        pages.push(1);
-        pages.push("...");
-        for (let i = currentPage - 2; i <= currentPage; i++) {
+        //else show first page, "..." and "offset" pages before the "currentPage"
+        pages.push(1, "..."); // 2
+        for (let i = currentPage - offset; i <= currentPage; i++) {
             pages.push(i);
         }
     }
+
     // calculate pagination after the current page
-    // if total pages are more than current page + 4, show two pages after the current page and "..." and the last page
-    if (totalPages > currentPage + 4) {
-        pages.push(currentPage + 1);
-        pages.push(currentPage + 2);
-        pages.push("...");
-        pages.push(totalPages);
+
+    // if "totalPages" are more than "currentPage" + "offsetRange", show "offset" pages after the "currentPage" and "..." and the last page
+    if (totalPages > currentPage + offsetRange) {
+        for (let i = currentPage + 1; i <= currentPage + offset; i++) {
+            pages.push(i);
+        }
+        pages.push("...", totalPages);
     } else {
-        // if total pages are less than current page + 4, show all pages
+        // else show all pages to the "totalPages"
         for (let i = currentPage + 1; i <= totalPages; i++) {
             pages.push(i);
         }

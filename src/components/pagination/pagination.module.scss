@@ -37,3 +37,24 @@
         }
     }
 }
+
+@media (max-width: 900px) {
+    .pagination {
+        &_item {
+            font-size: 0.9rem;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .pagination {
+        &_wrapper {
+            gap: 0.9rem;
+        }
+        &_pages {
+            gap: 0.9rem;
+        }
+    }
+}
