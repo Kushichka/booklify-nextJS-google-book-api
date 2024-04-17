@@ -1,5 +1,6 @@
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
+import clsx from "clsx";
 
 import { Book } from "@/types/bookData";
 import { BookPageCategories } from "../bookPageCategories";
@@ -39,7 +40,7 @@ export const BookPageAbout = ({ data }: { data: Book }) => {
                 {language}
             </p>
             <div
-                className={styles.about_info}
+                className={clsx(styles.about_description, styles.about_info)}
                 dangerouslySetInnerHTML={{ __html: clearDescription || "" }}
             />
 

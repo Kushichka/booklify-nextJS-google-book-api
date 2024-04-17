@@ -16,18 +16,18 @@
     margin-bottom: 2rem;
 }
 
-@media (max-width: 1270px) {
+@media (max-width: $screen-lg) {
     .searchList {
         grid-template-columns: repeat(3, $bookCard-width);
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: $screen-md) {
     .searchList {
         grid-template-columns: repeat(2, $bookCard-width);
     }
 }
-@media (max-width: 600px) {
+@media (max-width: $screen-sm) {
     .searchList {
         grid-template-columns: repeat(1, $bookCard-width);
     }
