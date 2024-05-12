@@ -15,11 +15,6 @@
     box-shadow: $box-shadow-card;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-
-    &:hover {
-        transform: scale(1.015);
-    }
 }
 
 .image {

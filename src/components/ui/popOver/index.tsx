@@ -1,30 +1,20 @@
 "use client";
-import React, { useState } from "react";
-import clsx from "clsx";
+
+import Popup from "reactjs-popup";
 
 import styles from "./popOver.module.scss";
 
 export const PopOver = ({ children, title }: { children: JSX.Element; title: string }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
     return (
-        <>
-            <div className={clsx(styles.popOver_title, !isHovered && styles.popOver_hide)}>{title}</div>
-            <div
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                className={styles.popOver_children}
-            >
-                {children}
-            </div>
-        </>
+        <Popup
+            trigger={children}
+            on="hover"
+            position="top center"
+            offsetY={10}
+            arrow={false}
+            mouseEnterDelay={0}
+        >
+            <div className={styles.popOver_title}>{title}</div>
+        </Popup>
     );
 };
