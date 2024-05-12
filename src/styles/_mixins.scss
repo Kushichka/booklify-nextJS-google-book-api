@@ -18,11 +18,11 @@
 
 @mixin color-by-type($type) {
     @if $type == primary {
-        background-color: $primary-dark-color;
-        box-shadow: $primary-dark-color 0 1px 0;
+        background-color: $primary-color;
+        box-shadow: $primary-color 0 1px 0;
     } @else if $type == secondary {
-        background-color: $secondary-dark-color;
-        box-shadow: $secondary-dark-color 0 1px 0;
+        background-color: $secondary-color;
+        box-shadow: $secondary-color 0 1px 0;
     } @else {
         background-color: #fff;
     }

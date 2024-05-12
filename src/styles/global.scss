@@ -4,8 +4,10 @@
 
 body {
     font-family: "Roboto", sans-serif;
-    background-color: $white-color;
+    min-height: 100vh;
+    background-color: $bg-color;
     margin: 0 auto;
+    color: $black-color;
 }
 
 .container {

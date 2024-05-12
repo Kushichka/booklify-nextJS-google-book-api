@@ -13,7 +13,7 @@
     border: 3px solid $primary-color;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: box-shadow 0.5s ease;
-    color: $primary-dark-color;
+    color: $primary-color;
 
     &.active {
         box-shadow: 0 0 5px 5px rgba($primary-color, 0.4);

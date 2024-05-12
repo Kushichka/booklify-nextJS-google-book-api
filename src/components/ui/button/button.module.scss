@@ -16,15 +16,15 @@
         @include color-by-type(primary);
 
         &:hover {
-            background-color: rgba($primary-dark-color, 0.9);
+            background-color: rgba($primary-color, 0.9);
         }
 
         &:focus {
-            box-shadow: rgba($primary-dark-color, 0.4) 0 0 0 3px;
+            box-shadow: rgba($primary-color, 0.4) 0 0 0 3px;
         }
 
         &:active {
-            background-color: rgba($primary-dark-color, 0.8);
+            background-color: rgba($primary-color, 0.8);
         }
     }
 
@@ -32,15 +32,15 @@
         @include color-by-type(secondary);
 
         &:hover {
-            background-color: rgba($secondary-dark-color, 0.9);
+            background-color: rgba($secondary-color, 0.9);
         }
 
         &:focus {
-            box-shadow: rgba($secondary-dark-color, 0.4) 0 0 0 3px;
+            box-shadow: rgba($secondary-color, 0.4) 0 0 0 3px;
         }
 
         &:active {
-            background-color: rgba($secondary-dark-color, 0.8);
+            background-color: rgba($secondary-color, 0.8);
         }
     }
 
