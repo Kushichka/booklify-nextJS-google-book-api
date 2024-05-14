@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 import { Header } from "@/components/header";
 
@@ -19,13 +20,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={roboto.className}>
-                <Header />
-                <main className="container">
-                    <Suspense fallback={<div>..Loading</div>}>{children}</Suspense>
-                </main>
-            </body>
-        </html>
+        <SessionProvider>
+            <html lang="en">
+                <body className={roboto.className}>
+                    <Header />
+                    <main className="container">
+                        <Suspense fallback={<div>..Loading</div>}>{children}</Suspense>
+                    </main>
+                </body>
+            </html>
+        </SessionProvider>
     );
 }

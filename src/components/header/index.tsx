@@ -1,5 +1,5 @@
 import { Logo } from "@/components/ui/logo";
-import { Button } from "@/components/ui/button";
+import { ProfileGroup } from "../profileGroup";
 
 import styles from "./header.module.scss";
 
@@ -9,7 +9,7 @@ export const Header = () => {
             <div className="container">
                 <div className={styles.header}>
                     <Logo />
-                    <Button type="secondary">Sign in</Button>
+                    <ProfileGroup />
                 </div>
             </div>
         </header>

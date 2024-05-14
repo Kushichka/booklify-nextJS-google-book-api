@@ -1,0 +1,26 @@
+@use "@/styles/_colors.scss" as *;
+@use "@/styles/_variables.scss" as *;
+
+.profile {
+    &_wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.2rem;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 0 0 1px $white-color;
+            border-radius: $border-radius-internal;
+        }
+    }
+
+    &_image {
+        border-radius: 50%;
+    }
+
+    &_name {
+        color: $white-color;
+        font-weight: 500;
+    }
+}

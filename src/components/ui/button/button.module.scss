@@ -44,6 +44,26 @@
         }
     }
 
+    &[data-type="tertiary"] {
+        @include color-by-type(tertiary);
+
+        &:hover {
+            @include boxShadow-button;
+        }
+
+        // reactjs-popup focus issue
+        // &:focus {
+        //     @include boxShadow-button;
+        //     border-radius: $border-radius-internal;
+        // }
+
+        &:active {
+            @include boxShadow-button;
+            border-radius: $border-radius-internal;
+            background-color: rgba($tertiary-color, 0.8);
+        }
+    }
+
     &:focus:not(:focus-visible):not(.focus-visible) {
         box-shadow: none;
         outline: none;
