@@ -1,0 +1,27 @@
+.privacy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &_heading {
+        text-align: center;
+    }
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &_description {
+        margin-left: 1rem;
+    }
+
+    &_list {
+        margin-left: 2rem;
+
+        &_item {
+            list-style-type: disc;
+        }
+    }
+}
