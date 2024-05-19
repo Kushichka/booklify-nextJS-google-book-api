@@ -1,0 +1,19 @@
+@use "@/styles/_colors" as *;
+@use "@/styles/_variables" as *;
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 500px;
+
+    background-color: $tertiary-color;
+    border-radius: $border-radius-external;
+    box-shadow: $box-shadow-card;
+
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
