@@ -32,7 +32,7 @@ export const ProfileGroup = () => {
                         width="30"
                         height="30"
                         className={styles.profile_image}
-                        src={session.data.user.image || ""}
+                        src={(session.data.user as { picture: string }).picture || ""}
                         alt="Profile image"
                     />
                 </div>

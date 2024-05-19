@@ -1,20 +1,21 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { clsx } from "clsx";
 
 import { generatePaginationPages } from "@/utils/generatePaginationPages";
 
 import styles from "./pagination.module.scss";
 
-export const Pagination = ({ totalItems }: { totalItems: number }) => {
+export const Pagination = ({ totalItems, itemsOnPage }: { totalItems: number; itemsOnPage?: number }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const pathname = usePathname();
     const [offset, setOffset] = useState(2);
     const [paginationPages, setPaginationPages] = useState<(number | string)[] | null>(null);
 
     const currentPage = Number(searchParams.get("page")) || 1;
-    const totalPages = Math.ceil(totalItems / 12);
+    const totalPages = Math.ceil(totalItems / (itemsOnPage || 12));
 
     useEffect(() => {
         const handleResize = () => {
@@ -34,7 +35,7 @@ export const Pagination = ({ totalItems }: { totalItems: number }) => {
     const setPage = (pageNumber: number | string) => {
         const params = new URLSearchParams(searchParams);
         params.set("page", pageNumber.toString());
-        router.push(`search?${params.toString()}`);
+        router.push(`${pathname}?${params.toString()}`);
     };
 
     const pages = paginationPages?.map((page, i) => (

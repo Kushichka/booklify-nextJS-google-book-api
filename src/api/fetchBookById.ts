@@ -9,7 +9,7 @@ export const fetchBookById = async (id: string) => {
     try {
         if (!id) return null;
 
-        const url = `${baseUrl}/${id}?key=${apiKey}`;
+        const url = `${baseUrl}/volumes/${id}?key=${apiKey}`;
         const response = await fetch(url);
 
         if (!response.ok) throw new Error("Failed to fetch book data");

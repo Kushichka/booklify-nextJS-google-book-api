@@ -10,12 +10,18 @@ type ButtonProps = {
 };
 
 export const Button = ({ type, children, variant, clickHandler }: ButtonProps) => {
+    const click = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        if (clickHandler) {
+            clickHandler();
+        }
+    };
     return (
         <button
             type={type}
             className={styles.button}
             data-type={variant}
-            onClick={clickHandler}
+            onClick={click}
         >
             {children}
         </button>
