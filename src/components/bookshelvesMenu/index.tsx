@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { TBookshelf } from "@/types/bookshelves";
+import { Bookshelf } from "@/types/bookshelves";
 import { useBookshelves } from "@/hooks/useBookshelves";
 
 import styles from "./bookshelvesMenu.module.scss";
@@ -25,7 +25,7 @@ export const BookshelvesMenu = ({ bookshelfId }: { bookshelfId: string }) => {
         <>
             {bookshelves && (
                 <ul className={styles.bookshelves}>
-                    {bookshelves.map((bookshelf: TBookshelf) => (
+                    {bookshelves.map((bookshelf: Bookshelf) => (
                         <li
                             key={bookshelf.id}
                             onClick={() => clickHandler(bookshelf.id.toString())}

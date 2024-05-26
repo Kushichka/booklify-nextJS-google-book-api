@@ -1,10 +1,10 @@
-import { BookCover } from "@/components/ui/bookCover";
 import { fetchBookById } from "@/api/fetchBookById";
 import { BookPageAbout } from "@/components/bookPageAbout";
 import { NoResultsFound } from "@/components/noResultsFound";
+import { BackNavigation } from "@/components/ui/backNavigation";
+import { BookPageSide } from "@/components/bookPageSide";
 
 import styles from "./bookPage.module.scss";
-import { BackNavigation } from "@/components/ui/backNavigation";
 
 export default async function BookPage({
     searchParams,
@@ -24,20 +24,14 @@ export default async function BookPage({
                 href="back"
             />
 
-            {book && (
+            {book?.volumeInfo && (
                 <div className={styles.card}>
                     <div className={styles.header}>
-                        <h2>{book.volumeInfo.title}</h2>
+                        <h2>{book?.volumeInfo?.title}</h2>
                     </div>
                     <div className={styles.body}>
-                        <div className={styles.cover}>
-                            <BookCover
-                                src={book.volumeInfo.imageLinks?.thumbnail}
-                                height={450}
-                                width={300}
-                            />
-                        </div>
-                        {book?.volumeInfo && <BookPageAbout data={book} />}
+                        <BookPageSide data={book} />
+                        <BookPageAbout data={book} />
                     </div>
                 </div>
             )}

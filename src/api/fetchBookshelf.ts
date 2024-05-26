@@ -4,8 +4,6 @@ import { BookData } from "@/types/bookData";
 
 const baseUrl = process.env.NEXT_PUBLIC_BOOKS_BASE_URL;
 const fields = [
-    "id",
-    "volumeInfo(",
     "title",
     "authors",
     "publisher",
@@ -14,15 +12,21 @@ const fields = [
     "pageCount",
     "categories",
     "imageLinks/thumbnail",
-    "language)",
+    "language",
 ].join(",");
 
-export const fetchBookshelf = async (token: string, id: string, page = "1") => {
+type FetchBookshelf = {
+    token: string;
+    id: string;
+    startIndex?: string;
+    maxResults?: string;
+};
+
+export const fetchBookshelf = async ({ token, id, startIndex = "0", maxResults = "9" }: FetchBookshelf) => {
     try {
         if (!id || !token) return null;
 
-        const startIndex = parseInt(page) === 1 ? 0 : (parseInt(page) - 1) * 9;
-        const url = `${baseUrl}/mylibrary/bookshelves/${id}/volumes?startIndex=${startIndex}&maxResults=9&fields=totalItems,items(${fields})&access_token=${token}`;
+        const url = `${baseUrl}/mylibrary/bookshelves/${id}/volumes?startIndex=${startIndex}&maxResults=${maxResults}&fields=totalItems,items(id,volumeInfo(${fields}))&access_token=${token}`;
         const response = await fetch(url);
 
         if (!response.ok) throw new Error("Failed to fetch bookshelf");

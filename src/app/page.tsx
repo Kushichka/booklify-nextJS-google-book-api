@@ -7,7 +7,6 @@ export default function Home() {
     return (
         <section className={style.wrapper}>
             <SearchBox width="30rem" />
-
             <TermsPolicyModal />
         </section>
     );

@@ -37,39 +37,16 @@
     gap: 2rem;
 }
 
-.cover {
-    @include cover-decorations;
-}
-
 @media (max-width: $screen-md) {
     .body {
         flex: 0 0 65%;
     }
-    .cover {
-        flex: 0 0 35%;
-
-        & > img {
-            width: 100%;
-            height: auto;
-        }
-    }
 }
 @media (max-width: 700px) {
     .body {
+        flex: 0 0 100%;
         flex-direction: column;
         gap: 1rem;
-    }
-
-    .body {
-        flex: 0 0 100%;
-    }
-    .cover {
-        text-align: center;
-        flex: 0 0 100%;
-
-        & > img {
-            width: auto;
-        }
     }
 }
 

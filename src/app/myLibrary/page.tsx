@@ -1,9 +1,10 @@
+import { redirect } from "next/navigation";
+
 import { BookshelfContent } from "@/components/bookshelfContent";
 import { BookshelvesMenu } from "@/components/bookshelvesMenu";
+import { auth } from "@/auth";
 
 import styles from "./myLibrary.module.scss";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 export default async function MyLibrary({
     searchParams,

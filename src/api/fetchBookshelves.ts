@@ -1,6 +1,6 @@
 "use server";
 
-import { TBookshelves } from "@/types/bookshelves";
+import { Bookshelves } from "@/types/bookshelves";
 
 const baseUrl = process.env.NEXT_PUBLIC_BOOKS_BASE_URL;
 const fields = ["id", "title", "access", "volumeCount"].join(",");
@@ -14,7 +14,7 @@ export const fetchBookshelves = async (token: string) => {
 
         if (!response.ok) throw new Error("Failed to fetch bookshelves");
 
-        const data: TBookshelves = await response.json();
+        const data: Bookshelves = await response.json();
         if (data && Object.entries(data).length === 0) throw new Error("No bookshelves data found");
 
         return data.items
