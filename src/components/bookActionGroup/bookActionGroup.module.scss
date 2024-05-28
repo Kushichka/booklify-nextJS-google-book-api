@@ -15,6 +15,7 @@
         transition: background-color 0.2s ease;
         background-color: $primary-color;
         box-shadow: $primary-color 0 1px 0;
+        user-select: none;
         cursor: pointer;
 
         &:hover {
@@ -55,6 +56,16 @@
 
         &:hover {
             @include boxShadow-button;
+        }
+    }
+
+    &_spinner {
+        animation: rotate 1s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(360deg);
         }
     }
 }

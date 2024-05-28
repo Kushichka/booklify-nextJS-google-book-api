@@ -1,8 +1,10 @@
 "use client";
 
 import Popup from "reactjs-popup";
+import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import { FaPlus } from "react-icons/fa6";
+import { ImSpinner2 } from "react-icons/im";
 
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
@@ -10,18 +12,19 @@ import { useAllBooks } from "@/hooks/useAllBooks";
 
 import styles from "./bookActionGroup.module.scss";
 
-type TData = {
+type Data = {
     id: string;
     title: string;
     isActive: boolean;
 };
 
 export const BookActionGroup = ({ bookId }: { bookId: string }) => {
+    const session = useSession();
     const { data: books } = useAllBooks();
-    const [data, setData] = useState<TData[] | null>(null);
+    const [data, setData] = useState<Data[] | null>(null);
 
     useEffect(() => {
-        if (books) {
+        if (session.status === "authenticated" && books) {
             const newData = books.map((item) => {
                 return {
                     id: item.id,
@@ -31,7 +34,16 @@ export const BookActionGroup = ({ bookId }: { bookId: string }) => {
             });
             setData(newData);
         }
-    }, [books, bookId]);
+    }, [books, bookId, session.status]);
+
+    if (session?.status === "authenticated" && !data) {
+        return (
+            <div className={styles.bookActionGroup_button}>
+                <ImSpinner2 className={styles.bookActionGroup_spinner} />
+                <p>Add to library</p>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.bookActionGroup}>
@@ -42,6 +54,7 @@ export const BookActionGroup = ({ bookId }: { bookId: string }) => {
                         <p>Add to library</p>
                     </div>
                 }
+                disabled={!data}
                 position="top center"
                 offsetY={10}
                 on="click"
