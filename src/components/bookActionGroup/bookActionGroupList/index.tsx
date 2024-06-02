@@ -14,7 +14,13 @@ type Data = {
     isActive: boolean;
 };
 
-export const BookActionGroupList = ({ data }: { data: Data[] }) => {
+export const BookActionGroupList = ({
+    data,
+    getAllBooks,
+}: {
+    data: Data[];
+    getAllBooks: () => Promise<void>;
+}) => {
     const { removeBook, addBook } = useBookshelf();
     const searchParams = useSearchParams();
     const bookId = searchParams.get("id") as string;
@@ -28,8 +34,7 @@ export const BookActionGroupList = ({ data }: { data: Data[] }) => {
         } else {
             await addBook({ bookId, shelfId: target.parentElement.id });
         }
-
-        // await fetchBooks();
+        await getAllBooks();
     };
 
     return (

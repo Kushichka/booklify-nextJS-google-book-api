@@ -1,12 +1,13 @@
 "use client";
 
+import { MouseEventHandler } from "react";
 import styles from "./button.module.scss";
 
 type ButtonProps = {
     children: string;
     type?: "button" | "reset" | "submit";
     variant?: "primary" | "secondary" | "tertiary";
-    clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void | null>;
+    clickHandler?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const Button = ({ type, children, variant, clickHandler }: ButtonProps) => {

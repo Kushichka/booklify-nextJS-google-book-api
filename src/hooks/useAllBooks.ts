@@ -9,7 +9,7 @@ export const useAllBooks = () => {
     const { token } = useToken();
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchBooks = useCallback(async () => {
+    const fetchAllBooks = useCallback(async () => {
         if (bookshelves && token) {
             setIsLoading(true);
             const books = await fetchAllBooksFromShelves(token, bookshelves);
@@ -19,5 +19,5 @@ export const useAllBooks = () => {
         return null;
     }, [bookshelves, token]);
 
-    return { fetchBooks, isLoading };
+    return { fetchAllBooks, isLoading };
 };
