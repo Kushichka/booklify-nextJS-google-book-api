@@ -1,6 +1,6 @@
-import { Book } from "@/types/bookData";
 import { BookActionGroup } from "../bookActionGroup";
 import { BookCover } from "../ui/bookCover";
+import { Book } from "@/types/bookData";
 
 import styles from "./bookPageSide.module.scss";
 
@@ -14,7 +14,7 @@ export const BookPageSide = ({ data }: { data: Book }) => {
                     width={300}
                 />
             </div>
-            <BookActionGroup bookId={data?.id} />
+            <BookActionGroup />
         </div>
     );
 };

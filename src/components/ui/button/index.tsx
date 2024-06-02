@@ -6,14 +6,14 @@ type ButtonProps = {
     children: string;
     type?: "button" | "reset" | "submit";
     variant?: "primary" | "secondary" | "tertiary";
-    clickHandler?: () => void;
+    clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void | null>;
 };
 
 export const Button = ({ type, children, variant, clickHandler }: ButtonProps) => {
     const click = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (clickHandler) {
-            clickHandler();
+            clickHandler(event);
         }
     };
     return (

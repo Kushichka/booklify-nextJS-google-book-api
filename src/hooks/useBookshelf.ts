@@ -1,25 +1,66 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
-import { BookData } from "@/types/bookData";
 import { fetchBookshelf } from "@/api/fetchBookshelf";
 import { useToken } from "./useToken";
 import { getStartIndex } from "@/utils/getStartIndex";
+import { removeBookById } from "@/api/removeBookById";
+import { addBookById } from "@/api/addBookById";
 
-export const useBookshelf = (id: string, page?: string) => {
-    const [books, setBooks] = useState<BookData | null>(null);
+export const useBookshelf = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const { token } = useToken();
 
-    useEffect(() => {
-        const getBookshelf = async () => {
-            if (token && page) {
+    const getBookshelf = useCallback(
+        async ({ shelfId, page }: { shelfId: string; page?: string }) => {
+            if (shelfId && token && page) {
+                setIsLoading(true);
                 const startIndex = getStartIndex(page);
-                const response = await fetchBookshelf({ token, id, startIndex });
-                setBooks(response);
+                const response = await fetchBookshelf({ token, id: shelfId, startIndex });
+                if (!response) {
+                    setIsLoading(false);
+                    console.error("Failed fetching bookshelf");
+                }
+                setIsLoading(false);
+                return response;
             }
-        };
+            return null;
+        },
+        [token]
+    );
 
-        getBookshelf();
-    }, [token, id, page]);
+    const removeBook = useCallback(
+        async ({ bookId, shelfId }: { bookId: string; shelfId: string }) => {
+            if (shelfId && token) {
+                setIsLoading(true);
+                const response = await removeBookById({ token, shelfId, bookId });
+                if (!response) {
+                    setIsLoading(false);
+                    console.error("Failed removing book");
+                }
+                setIsLoading(false);
+                return response;
+            }
+            return null;
+        },
+        [token]
+    );
 
-    return { books };
+    const addBook = useCallback(
+        async ({ bookId, shelfId }: { bookId: string; shelfId: string }) => {
+            if (shelfId && token) {
+                setIsLoading(true);
+                const response = await addBookById({ token, shelfId, bookId });
+                if (!response) {
+                    setIsLoading(false);
+                    console.error("Failed adding book");
+                }
+                setIsLoading(false);
+                return response;
+            }
+            return null;
+        },
+        [token]
+    );
+
+    return { getBookshelf, isLoading, removeBook, addBook };
 };

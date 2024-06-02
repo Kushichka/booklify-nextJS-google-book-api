@@ -15,14 +15,19 @@ const fields = [
     "language",
 ].join(",");
 
-type FetchBookshelf = {
+type FetchBookshelfProps = {
     token: string;
     id: string;
     startIndex?: string;
     maxResults?: string;
 };
 
-export const fetchBookshelf = async ({ token, id, startIndex = "0", maxResults = "9" }: FetchBookshelf) => {
+export const fetchBookshelf = async ({
+    token,
+    id,
+    startIndex = "0",
+    maxResults = "9",
+}: FetchBookshelfProps) => {
     try {
         if (!id || !token) return null;
 

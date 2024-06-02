@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { useBookshelves } from "./useBookshelves";
 import { useToken } from "./useToken";
 import { fetchAllBooksFromShelves } from "@/api/fetchAllBooksFromShelves";
-import { ShelfItem } from "@/types/bookshelves";
 
 export const useAllBooks = () => {
     const { bookshelves } = useBookshelves();
     const { token } = useToken();
-    const [data, setData] = useState<ShelfItem[] | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
+    const fetchBooks = useCallback(async () => {
         if (bookshelves && token) {
-            const fetchBooks = async () => {
-                const books = await fetchAllBooksFromShelves(token, bookshelves);
-                setData(books);
-            };
-            fetchBooks();
+            setIsLoading(true);
+            const books = await fetchAllBooksFromShelves(token, bookshelves);
+            setIsLoading(false);
+            return books;
         }
+        return null;
     }, [bookshelves, token]);
 
-    return { data };
+    return { fetchBooks, isLoading };
 };
