@@ -8,9 +8,10 @@ type ButtonProps = {
     type?: "button" | "reset" | "submit";
     variant?: "primary" | "secondary" | "tertiary";
     clickHandler?: MouseEventHandler<HTMLButtonElement>;
+    disabled?: boolean;
 };
 
-export const Button = ({ type, children, variant, clickHandler }: ButtonProps) => {
+export const Button = ({ type, children, variant, clickHandler, disabled }: ButtonProps) => {
     const click = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (clickHandler) {
@@ -23,6 +24,7 @@ export const Button = ({ type, children, variant, clickHandler }: ButtonProps) =
             className={styles.button}
             data-type={variant}
             onClick={click}
+            disabled={disabled}
         >
             {children}
         </button>
