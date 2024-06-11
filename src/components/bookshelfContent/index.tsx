@@ -6,23 +6,27 @@ import { useBookshelf } from "@/hooks/useBookshelf";
 import { BookCard } from "../bookCard";
 import { Pagination } from "../pagination";
 import { BookData } from "@/types/bookData";
+import { BookshelfContentSkeleton } from "./bookshelfContentSkeleton";
 
 import styles from "./bookshelfContent.module.scss";
 
 export const BookshelfContent = ({ bookshelfId, page }: { bookshelfId: string; page: string }) => {
-    const { getBookshelf, isLoading } = useBookshelf();
+    const { getBookshelf } = useBookshelf();
     const [books, setBooks] = useState<BookData | null>(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         getBookshelf({ shelfId: bookshelfId, page }).then((response) => {
             if (response) {
                 setBooks(response);
             }
+            setLoading(false);
         });
     }, [bookshelfId, page, getBookshelf]);
 
-    if (isLoading) {
-        return <div className={styles.bookshelfContent_wrapper}>Loading...</div>;
+    if (loading) {
+        return <BookshelfContentSkeleton />;
     }
 
     if (books?.totalItems === 0) {

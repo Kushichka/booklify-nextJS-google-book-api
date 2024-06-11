@@ -1,0 +1,75 @@
+@use "@/styles/_colors.scss" as *;
+@use "@/styles/_variables.scss" as *;
+@use "@/styles/_mixins.scss" as *;
+
+.wrapper {
+    width: 100%;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, $bookCard-width);
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
+    grid-gap: 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    width: $bookCard-width;
+    border-radius: $border-radius-external;
+    box-shadow: $box-shadow-card;
+    background-color: $skeleton-bg-color;
+    @include skeletonAnimation;
+}
+
+.image {
+    width: 200px;
+    height: 300px;
+    border-radius: $border-radius-internal;
+    background-color: $skeleton-bg-color-dark;
+}
+
+.book {
+    &_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    &_info_bottom {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &_title,
+    &_author,
+    &_lang {
+        height: 1rem;
+        background-color: $skeleton-bg-color-dark;
+        border-radius: $border-radius-internal;
+    }
+
+    &_title {
+        width: 100%;
+    }
+
+    &_author {
+        width: 80%;
+    }
+
+    &_lang {
+        width: 20%;
+    }
+}

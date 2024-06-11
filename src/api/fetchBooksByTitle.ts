@@ -6,8 +6,6 @@ const baseUrl = process.env.NEXT_PUBLIC_BOOKS_BASE_URL;
 const apiKey = process.env.NEXT_PUBLIC_BOOKS_API_KEY;
 const queries = ["printType=books", "maxResults=12"].join("&");
 const fields = [
-    "id",
-    "volumeInfo(",
     "title",
     "authors",
     "publisher",
@@ -16,7 +14,7 @@ const fields = [
     "pageCount",
     "categories",
     "imageLinks/thumbnail",
-    "language)",
+    "language",
 ].join(",");
 
 export const fetchBooksByTitle = async (title: string, page = "1") => {
@@ -26,7 +24,7 @@ export const fetchBooksByTitle = async (title: string, page = "1") => {
         const startIndex = parseInt(page) === 1 ? 0 : (parseInt(page) - 1) * 12;
 
         const newTitle = title.replace(" ", "+");
-        const url = `${baseUrl}/volumes?q=intitle:"${newTitle}"&${queries}&startIndex=${startIndex}&fields=totalItems,items(${fields})&key=${apiKey}`;
+        const url = `${baseUrl}/volumes?q=intitle:"${newTitle}"&${queries}&startIndex=${startIndex}&fields=totalItems,items(id,volumeInfo(${fields}))&key=${apiKey}`;
         const response = await fetch(url);
 
         if (!response.ok) throw new Error("Failed to fetch books");
