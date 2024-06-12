@@ -14,3 +14,15 @@
         align-items: center;
     }
 }
+
+@media (max-width: $screen-lg) {
+    .bookshelfContent {
+        grid-template-columns: repeat(2, $bookCard-width);
+    }
+}
+
+@media (max-width: $screen-sm) {
+    .bookshelfContent {
+        grid-template-columns: repeat(1, $bookCard-width);
+    }
+}

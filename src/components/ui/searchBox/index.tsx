@@ -1,14 +1,14 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { clsx } from "clsx";
-
-import { LuSearch } from "react-icons/lu";
 import { IconContext } from "react-icons";
+import { LuSearch } from "react-icons/lu";
 
 import styles from "./searchBox.module.scss";
 
-export const SearchBox = ({ width }: { width?: string }) => {
+export const SearchBox = () => {
     const [isActive, setIsActive] = useState(false);
     const [searchValue, setSearchValue] = useState("");
 
@@ -38,10 +38,7 @@ export const SearchBox = ({ width }: { width?: string }) => {
 
     return (
         <IconContext.Provider value={{ size: "1.5rem" }}>
-            <div
-                className={clsx(styles.wrapper, isActive && styles.active)}
-                style={{ width: width }}
-            >
+            <div className={clsx(styles.wrapper, isActive && styles.active)}>
                 <LuSearch />
                 <input
                     className={styles.input}
@@ -52,7 +49,6 @@ export const SearchBox = ({ width }: { width?: string }) => {
                     onChange={handleChange}
                     onKeyDown={handlePressKey}
                     value={searchValue}
-                    // defaultValue={searchParams.get("q")?.toString()}
                 />
                 <div
                     className={clsx(styles.close_btn, isActive && styles.active)}

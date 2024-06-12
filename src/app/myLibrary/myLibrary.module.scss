@@ -1,6 +1,15 @@
+@use "@/styles/_variables.scss" as *;
+
 .myLibrary {
     display: flex;
     align-items: flex-start;
     gap: 2rem;
     margin-bottom: 2rem;
+}
+
+@media (max-width: $screen-md) {
+    .myLibrary {
+        flex-direction: column;
+        align-items: center;
+    }
 }

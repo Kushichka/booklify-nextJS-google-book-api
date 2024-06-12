@@ -39,3 +39,10 @@
         }
     }
 }
+
+@media (max-width: $screen-md) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+}

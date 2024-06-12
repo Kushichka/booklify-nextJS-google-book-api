@@ -24,3 +24,11 @@
         font-weight: 500;
     }
 }
+
+@media (max-width: $screen-sm) {
+    .profile {
+        &_wrapper {
+            gap: 0.5rem;
+        }
+    }
+}
