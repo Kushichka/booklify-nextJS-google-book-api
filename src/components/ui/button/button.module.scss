@@ -70,7 +70,7 @@
     }
 
     &:disabled {
-        cursor: not-allowed;
+        cursor: progress;
         opacity: 0.5;
     }
 }
