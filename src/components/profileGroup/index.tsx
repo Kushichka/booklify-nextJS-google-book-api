@@ -9,9 +9,9 @@ import { ProfileDropDownMenu } from "./profileDropDownMenu";
 import styles from "./profileGroup.module.scss";
 
 export const ProfileGroup = () => {
-    const session = useSession();
+    const { data } = useSession();
 
-    if (!session?.data?.user) {
+    if (!data?.user) {
         return (
             <Button
                 type="submit"
@@ -27,12 +27,12 @@ export const ProfileGroup = () => {
         <ProfileDropDownMenu
             trigger={
                 <div className={styles.profile_wrapper}>
-                    <p className={styles.profile_name}>{session.data.user.name}</p>
+                    <p className={styles.profile_name}>{data?.user?.name}</p>
                     <Image
                         width="30"
                         height="30"
                         className={styles.profile_image}
-                        src={(session.data.user as { picture: string }).picture || ""}
+                        src={(data.user as { image: string }).image || ""}
                         alt="Profile image"
                     />
                 </div>

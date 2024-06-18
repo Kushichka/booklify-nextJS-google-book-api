@@ -1,14 +1,15 @@
 import { useCallback, useState } from "react";
 
 import { fetchBookshelf } from "@/api/fetchBookshelf";
-import { useToken } from "./useToken";
 import { getStartIndex } from "@/utils/getStartIndex";
 import { removeBookById } from "@/api/removeBookById";
 import { addBookById } from "@/api/addBookById";
+import { useSession } from "next-auth/react";
 
 export const useBookshelf = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const { token } = useToken();
+    const { data: session } = useSession();
+    const token = session?.access_token;
 
     const getBookshelf = useCallback(
         async ({ shelfId, page }: { shelfId: string; page?: string }) => {

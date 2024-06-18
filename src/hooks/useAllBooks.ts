@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 
 import { useBookshelves } from "./useBookshelves";
-import { useToken } from "./useToken";
 import { fetchAllBooksFromShelves } from "@/api/fetchAllBooksFromShelves";
+import { useSession } from "next-auth/react";
 
 export const useAllBooks = () => {
     const { bookshelves } = useBookshelves();
-    const { token } = useToken();
+    const { data } = useSession();
+    const token = data?.access_token;
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchAllBooks = useCallback(async () => {

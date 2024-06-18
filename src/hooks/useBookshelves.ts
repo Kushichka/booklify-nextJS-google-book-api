@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 
 import { fetchBookshelves } from "@/api/fetchBookshelves";
 import { Bookshelf } from "@/types/bookshelves";
-import { useToken } from "./useToken";
+import { useSession } from "next-auth/react";
 
 export const useBookshelves = () => {
     const [bookshelves, setBookshelves] = useState<Bookshelf[] | null>(null);
-    const { token } = useToken();
+    const { data: session } = useSession();
+    const token = session?.access_token;
 
     useEffect(() => {
         const getBookshelves = async () => {
