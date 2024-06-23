@@ -1,0 +1,26 @@
+.authors {
+    display: flex;
+    gap: 0.2rem;
+    align-items: baseline;
+
+    &_title {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    &_wrapper {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    &_item {
+        transition: all 0.3s;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+}

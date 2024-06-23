@@ -17,14 +17,14 @@ const fields = [
     "language",
 ].join(",");
 
-export const fetchBooksByTitle = async (title: string, page = "1") => {
+export const fetchBooksByTitle = async (title: string, page = "1", searchBy = "intitle") => {
     try {
         if (!title) return null;
 
         const startIndex = parseInt(page) === 1 ? 0 : (parseInt(page) - 1) * 12;
 
         const newTitle = title.replace(" ", "+");
-        const url = `${baseUrl}/volumes?q=intitle:"${newTitle}"&${queries}&startIndex=${startIndex}&fields=totalItems,items(id,volumeInfo(${fields}))&key=${apiKey}`;
+        const url = `${baseUrl}/volumes?q=${searchBy}:"${newTitle}"&${queries}&startIndex=${startIndex}&fields=totalItems,items(id,volumeInfo(${fields}))&key=${apiKey}`;
         const response = await fetch(url);
 
         if (!response.ok) throw new Error("Failed to fetch books");

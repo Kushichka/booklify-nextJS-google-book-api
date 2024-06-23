@@ -12,7 +12,8 @@ export default async function SearchPage({
 }: {
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
-    const books = await fetchBooksByTitle(searchParams.q as string, searchParams.page as string);
+    const searchBy = searchParams?.by === "author" ? "inauthor" : "intitle";
+    const books = await fetchBooksByTitle(searchParams.q as string, searchParams.page as string, searchBy);
 
     if (!books || (books && (books.totalItems === 0 || !books.items))) {
         return <NoResultsFound />;

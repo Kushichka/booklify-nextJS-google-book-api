@@ -27,6 +27,7 @@ export const SearchBox = () => {
         const params = new URLSearchParams(searchParams.toString());
         if (event.key === "Enter") {
             if (searchValue) {
+                params.set("by", "title");
                 params.set("q", searchValue);
                 params.set("page", "1");
             } else {

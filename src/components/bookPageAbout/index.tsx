@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { Book } from "@/types/bookData";
 import { BookPageCategories } from "../bookPageCategories";
 import { Divider } from "../ui/divider";
+import { BookPageAuthors } from "../bookPageAuthors";
 
 import styles from "./bookPageAbout.module.scss";
 
@@ -14,15 +15,11 @@ export const BookPageAbout = ({ data }: { data: Book }) => {
 
     const window = new JSDOM("").window;
     const purify = DOMPurify(window);
-
     const clearDescription = purify.sanitize(description || "");
 
     return (
         <div className={styles.about}>
-            <p className={styles.about_info}>
-                <span className={styles.about_title}>Author:</span>
-                {authors && authors.join(", ")}
-            </p>
+            {authors && <BookPageAuthors authors={authors} />}
             <p className={styles.about_info}>
                 <span className={styles.about_title}>Publisher:</span>
                 {publisher}
