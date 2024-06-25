@@ -27,4 +27,4 @@ create **.env.local** file and add environment variables:
 
 ## Demo
 
-You can try it out in this [demo](https://booklify-next-js-google-book-api.vercel.app/)
+You can try it out in this [demo](https://booklify.pl/)
