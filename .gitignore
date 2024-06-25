@@ -9,6 +9,7 @@
 # testing
 /coverage
 test.jsx
+/src/app/api/books
 
 # next.js
 /.next/

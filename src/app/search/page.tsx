@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { fetchBooksByTitle } from "@/api/fetchBooksByTitle";
 import { BookCard } from "@/components/bookCard";
 import { Book } from "@/types/bookData";
@@ -12,8 +13,14 @@ export default async function SearchPage({
 }: {
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
+    const language = headers().get("accept-language") || "en";
     const searchBy = searchParams?.by === "author" ? "inauthor" : "intitle";
-    const books = await fetchBooksByTitle(searchParams.q as string, searchParams.page as string, searchBy);
+    const books = await fetchBooksByTitle(
+        searchParams.q as string,
+        searchParams.page as string,
+        searchBy,
+        language.split("-")[0]
+    );
 
     if (!books || (books && (books.totalItems === 0 || !books.items))) {
         return <NoResultsFound />;
