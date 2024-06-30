@@ -4,13 +4,16 @@ import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Bookshelf } from "@/types/bookshelves";
-import { useBookshelves } from "@/hooks/useBookshelves";
 
 import styles from "./bookshelvesMenu.module.scss";
-import { BookshelvesMenuSkeleton } from "./bookshelvesMenuSkeleton";
 
-export const BookshelvesMenu = ({ bookshelfId }: { bookshelfId: string }) => {
-    const { bookshelves } = useBookshelves();
+export const BookshelvesMenu = ({
+    bookshelves,
+    bookshelfId,
+}: {
+    bookshelves: Bookshelf[] | null;
+    bookshelfId: string;
+}) => {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -21,10 +24,6 @@ export const BookshelvesMenu = ({ bookshelfId }: { bookshelfId: string }) => {
         params.set("page", "1");
         router.push(`${pathname}?${params}`);
     };
-
-    if (!bookshelves) {
-        return <BookshelvesMenuSkeleton />;
-    }
 
     return (
         <>

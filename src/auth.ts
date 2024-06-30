@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import axios from "axios";
 import type { JWT } from "next-auth/jwt";
 import type { Session, User } from "next-auth";
 import Google from "next-auth/providers/google";
@@ -45,34 +46,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if (!token.refresh_token) throw new Error("Missing refresh token");
 
                 try {
-                    const response = await fetch("https://oauth2.googleapis.com/token", {
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams({
+                    const response = await axios.post(
+                        "https://oauth2.googleapis.com/token",
+                        new URLSearchParams({
                             client_id: process.env.AUTH_GOOGLE_ID!,
                             client_secret: process.env.AUTH_GOOGLE_SECRET!,
                             grant_type: "refresh_token",
                             refresh_token: token.refresh_token!,
                         }),
-                        method: "POST",
-                    });
+                        {
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        }
+                    );
 
-                    const responseTokens = await response.json();
-
-                    if (!response.ok) throw responseTokens;
+                    const responseTokens = response.data;
 
                     return {
                         // Keep the previous token properties
                         ...token,
                         access_token: responseTokens.access_token,
-                        expires_at: Math.floor(Date.now() / 1000 + (responseTokens.expires_in as number)),
+                        expires_at: Math.floor(Date.now() / 1000 + responseTokens.expires_in),
                         // Fall back to old refresh token, but note that
                         // many providers may only allow using a refresh token once.
                         refresh_token: responseTokens.refresh_token ?? token.refresh_token,
                     };
                 } catch (error) {
-                    console.error("Error refreshing access token", error);
-                    // The error property can be used client-side to handle the refresh token error
-                    return { ...token, error: "RefreshAccessTokenError" as const };
+                    if (axios.isAxiosError(error) && error.response) {
+                        throw error.response.data;
+                    } else {
+                        throw error;
+                    }
                 }
             }
         },
