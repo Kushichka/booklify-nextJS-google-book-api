@@ -1,4 +1,6 @@
 import { headers } from "next/headers";
+import { v4 as uuid } from "uuid";
+
 import { fetchBooksByTitle } from "@/api/fetchBooksByTitle";
 import { BookCard } from "@/components/bookCard";
 import { Book } from "@/types/bookData";
@@ -36,7 +38,7 @@ export default async function SearchPage({
                 {books.items.map((book: Book) => (
                     <BookCard
                         book={book}
-                        key={book.id}
+                        key={uuid()}
                     />
                 ))}
             </div>

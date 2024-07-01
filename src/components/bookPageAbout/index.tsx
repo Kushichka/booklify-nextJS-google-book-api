@@ -1,21 +1,21 @@
-import DOMPurify from "dompurify";
-import { JSDOM } from "jsdom";
-import clsx from "clsx";
+"use client";
 
-import { Book } from "@/types/bookData";
+import DOMPurify from "isomorphic-dompurify";
+import clsx from "clsx";
+import { useShallow } from "zustand/react/shallow";
+
 import { BookPageCategories } from "../bookPageCategories";
 import { Divider } from "../ui/divider";
 import { BookPageAuthors } from "../bookPageAuthors";
+import { useBook } from "@/store/useBook";
 
 import styles from "./bookPageAbout.module.scss";
 
-export const BookPageAbout = ({ data }: { data: Book }) => {
+export const BookPageAbout = () => {
+    const book = useBook(useShallow((state) => state.book));
     const { authors, description, language, pageCount, categories, publishedDate, publisher } =
-        data.volumeInfo;
-
-    const window = new JSDOM("").window;
-    const purify = DOMPurify(window);
-    const clearDescription = purify.sanitize(description || "");
+        book?.volumeInfo || {};
+    const clearDescription = DOMPurify.sanitize(description || "");
 
     return (
         <div className={styles.about}>
@@ -38,7 +38,7 @@ export const BookPageAbout = ({ data }: { data: Book }) => {
             </p>
             <div
                 className={clsx(styles.about_description, styles.about_info)}
-                dangerouslySetInnerHTML={{ __html: clearDescription || "" }}
+                dangerouslySetInnerHTML={{ __html: clearDescription }}
             />
 
             {categories && (

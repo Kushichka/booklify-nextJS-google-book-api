@@ -1,13 +1,13 @@
 import { redirect } from "next/navigation";
 
+import { auth } from "@/auth";
 import { BookshelfContent } from "@/components/bookshelfContent";
 import { BookshelvesMenu } from "@/components/bookshelvesMenu";
-import { auth } from "@/auth";
 import { fetchBookshelf } from "@/api/fetchBookshelf";
 import { getStartIndex } from "@/utils/getStartIndex";
+import { fetchBookshelves } from "@/api/fetchBookshelves";
 
 import styles from "./myLibrary.module.scss";
-import { fetchBookshelves } from "@/api/fetchBookshelves";
 
 export default async function MyLibrary({
     searchParams,

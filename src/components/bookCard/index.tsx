@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { v4 as uuid } from "uuid";
 
 import { BookCover } from "../ui/bookCover";
 import { Book } from "@/types/bookData";
@@ -15,7 +16,7 @@ export const BookCard = ({ book }: { book: Book }) => {
                 pathname: "/book",
                 query: { id: book.id },
             }}
-            key={book.id}
+            key={uuid()}
             className={styles.bookCard}
         >
             <div className={styles.image}>

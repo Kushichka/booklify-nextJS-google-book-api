@@ -1,3 +1,5 @@
+import { v4 as uuid } from "uuid";
+
 import { BookCard } from "../bookCard";
 import { Pagination } from "../pagination";
 import { BookData } from "@/types/bookData";
@@ -15,7 +17,7 @@ export const BookshelfContent = ({ books }: { books: BookData | null }) => {
                 {books?.items &&
                     books.items.map((book) => (
                         <BookCard
-                            key={book.id}
+                            key={uuid()}
                             book={book}
                         />
                     ))}

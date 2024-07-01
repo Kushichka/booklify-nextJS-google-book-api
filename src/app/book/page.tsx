@@ -1,8 +1,7 @@
 import { fetchBookById } from "@/api/fetchBookById";
-import { BookPageAbout } from "@/components/bookPageAbout";
 import { NoResultsFound } from "@/components/noResultsFound";
 import { BackNavigation } from "@/components/ui/backNavigation";
-import { BookPageSide } from "@/components/bookPageSide";
+import { Book } from "@/components/book";
 
 import styles from "./bookPage.module.scss";
 
@@ -24,17 +23,7 @@ export default async function BookPage({
                 href="back"
             />
 
-            {book?.volumeInfo && (
-                <div className={styles.card}>
-                    <div className={styles.header}>
-                        <h2>{book?.volumeInfo?.title}</h2>
-                    </div>
-                    <div className={styles.body}>
-                        <BookPageSide data={book} />
-                        <BookPageAbout data={book} />
-                    </div>
-                </div>
-            )}
+            {book?.volumeInfo && <Book book={book} />}
         </section>
     );
 }
